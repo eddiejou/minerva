@@ -1,0 +1,55 @@
+<!-- Validation failure messages -->
+<% if @lesson.errors.any? %>
+  <% @lesson.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Add Lesson</h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/create_lesson" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for title -->
+      <div class="form-group">
+        <label for="title" class="control-label">
+          Title
+        </label>
+
+        <input type="text" id="title" name="title" placeholder="Title" class="form-control" value="<%= @lesson.title %>">
+      </div>
+
+      <!-- Label and input for file_location -->
+      <div class="form-group">
+        <label for="file_location" class="control-label">
+          File location
+        </label>
+
+        <input type="text" id="file_location" name="file_location" placeholder="File location" class="form-control" value="<%= @lesson.file_location %>">
+      </div>
+
+      <!-- Label and input for course_id -->
+      <div class="form-group">
+        <label for="course_id" class="control-label">
+          Course
+        </label>
+
+        <input type="text" id="course_id" name="course_id" placeholder="Course" class="form-control" value="<%= @lesson.course_id %>">
+      </div>
+
+      <button class="btn btn-success">
+        Create Lesson
+      </button>
+      or
+      <a href="/lessons">Cancel</a>
+    </form>
+  </div>
+</div>

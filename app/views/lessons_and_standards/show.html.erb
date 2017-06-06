@@ -1,0 +1,28 @@
+<div class="page-header">
+  <h3>Lessons And Standard #<%= @lessons_and_standard.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12 mb-2">
+    <dl class="dl-horizontal">
+      <dt>Lesson</dt>
+      <dd><%= @lessons_and_standard.lesson_id %></dd>
+
+      <dt>Standard</dt>
+      <dd><%= @lessons_and_standard.standard_id %></dd>
+
+    </dl>
+
+    <div class="btn-group btn-group-justified">
+      <a href="/lessons_and_standards" class="btn btn-primary">
+        Back
+      </a>
+      <a href="/lessons_and_standards/<%= @lessons_and_standard.id %>/edit" class="btn btn-warning">
+        Edit
+      </a>
+      <a href="/delete_lessons_and_standard/<%= @lessons_and_standard.id %>" class="btn btn-danger" rel="nofollow">
+        Delete
+      </a>
+    </div>
+  </div>
+</div>

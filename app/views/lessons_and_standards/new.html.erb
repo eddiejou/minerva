@@ -1,0 +1,46 @@
+<!-- Validation failure messages -->
+<% if @lessons_and_standard.errors.any? %>
+  <% @lessons_and_standard.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Add Lessons And Standard</h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/create_lessons_and_standard" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for lesson_id -->
+      <div class="form-group">
+        <label for="lesson_id" class="control-label">
+          Lesson
+        </label>
+
+        <input type="text" id="lesson_id" name="lesson_id" placeholder="Lesson" class="form-control" value="<%= @lessons_and_standard.lesson_id %>">
+      </div>
+
+      <!-- Label and input for standard_id -->
+      <div class="form-group">
+        <label for="standard_id" class="control-label">
+          Standard
+        </label>
+
+        <input type="text" id="standard_id" name="standard_id" placeholder="Standard" class="form-control" value="<%= @lessons_and_standard.standard_id %>">
+      </div>
+
+      <button class="btn btn-success">
+        Create Lessons And Standard
+      </button>
+      or
+      <a href="/lessons_and_standards">Cancel</a>
+    </form>
+  </div>
+</div>

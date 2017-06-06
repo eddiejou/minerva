@@ -1,0 +1,25 @@
+<div class="page-header">
+  <h3>Standard #<%= @standard.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12 mb-2">
+    <dl class="dl-horizontal">
+      <dt>Standard number</dt>
+      <dd><%= @standard.standard_number %></dd>
+
+    </dl>
+
+    <div class="btn-group btn-group-justified">
+      <a href="/standards" class="btn btn-primary">
+        Back
+      </a>
+      <a href="/standards/<%= @standard.id %>/edit" class="btn btn-warning">
+        Edit
+      </a>
+      <a href="/delete_standard/<%= @standard.id %>" class="btn btn-danger" rel="nofollow">
+        Delete
+      </a>
+    </div>
+  </div>
+</div>
