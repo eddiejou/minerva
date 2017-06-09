@@ -5,7 +5,6 @@
       <div class="col-md-offset-2 col-md-5"><h3><%= @lesson.course.name %></h3></div>
     </div>
   </div>
-
 </div>
 
 <div class="row">
@@ -22,7 +21,12 @@
 
       <dt>Assignments</dt>
       <% @lesson.assignments.each do |assignment| %>
-      <dd><a href="<%= assignment.assignment_file %>"><%= assignment.title %></a></dd>
+      <dd>
+        <%= assignment.title %>
+          ( <a href="/assignments/<%= assignment.id %>">details</a>
+          |
+          <a href="<%= assignment.assignment_file %>" target="_blank">assignment</a> )
+      </dd>
       <% end %>
 
       <dt>Standards</dt>

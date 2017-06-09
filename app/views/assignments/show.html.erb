@@ -1,5 +1,10 @@
 <div class="page-header">
-  <h3>Assignment #<%= @assignment.id %></h3>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7  "><h3>Assignment: <%= @assignment.title %></h3></div>
+      <div class="col-md-offset-0 col-md-5"><h3><%= @assignment.lesson.course.name %></h3></div>
+    </div>
+  </div>
 </div>
 
 <div class="row">
@@ -8,16 +13,29 @@
       <dt>Title</dt>
       <dd><%= @assignment.title %></dd>
 
-      <dt>Assignment file</dt>
-      <dd><%= @assignment.assignment_file %></dd>
+      <dt>Assignments</dt>
+      <dd><a href="<%= @assignment_file %>"><%= @assignment.title %></a></dd>
 
       <dt>Lesson</dt>
-      <dd><%= @assignment.lesson_id %></dd>
+      <dd>
+        <%= @assignment.lesson.title %>
+        ( <a href="/lessons/<%= @assignment.lesson.id %>">details</a>
+        |
+        <a href="<%= @assignment.lesson.lesson_file %>" target="_blank">lesson</a> )
+      </dd>
+
+      <dt>Course</dt>
+      <dd><%= @assignment.lesson.course.name %></dd>
+
+      <dt>Standards</dt>
+      <% @assignment.lesson.standards.each do |standard| %>
+      <dd><%= standard.standard_number %></dd>
+      <% end %>
 
     </dl>
 
     <div class="btn-group btn-group-justified">
-      <a href="/assignments" class="btn btn-primary">
+      <a href="/courses/<%= @assignment.lesson.course.id %>" class="btn btn-primary">
         Back
       </a>
       <a href="/assignments/<%= @assignment.id %>/edit" class="btn btn-warning">
