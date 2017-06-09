@@ -9,7 +9,7 @@
 <% end %>
 
 <div class="page-header">
-  <h3>Edit Lesson #<%= @lesson.id %></h3>
+  <h3>Edit Lesson: <%= @lesson.title %></h3>
 </div>
 
 <div class="row">
@@ -27,13 +27,13 @@
         <input type="text" id="title" name="title" placeholder="Title" class="form-control" value="<%= @lesson.title %>">
       </div>
 
-      <!-- Label and input for file_location -->
+      <!-- Label and input for lesson_file -->
       <div class="form-group">
-        <label for="file_location" class="control-label">
-          File location
+        <label for="lesson_file" class="control-label">
+          Lesson File
         </label>
 
-        <input type="text" id="file_location" name="file_location" placeholder="File location" class="form-control" value="<%= @lesson.file_location %>">
+        <input type="text" id="lesson_file" name="lesson_file" placeholder="File location" class="form-control" value="<%= @lesson.lesson_file %>">
       </div>
 
       <!-- Label and input for course_id -->

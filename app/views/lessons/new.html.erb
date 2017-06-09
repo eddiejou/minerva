@@ -14,7 +14,7 @@
 
 <div class="row">
   <div class="col-md-12">
-    <form action="/create_lesson" method="post">
+    <form enctype="multipart/form-data" action="/create_lesson" method="post">
       <!-- Hidden input for authenticity token to protect from forgery -->
       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
@@ -27,13 +27,13 @@
         <input type="text" id="title" name="title" placeholder="Title" class="form-control" value="<%= @lesson.title %>">
       </div>
 
-      <!-- Label and input for file_location -->
+      <!-- Label and input for lesson_file -->
       <div class="form-group">
-        <label for="file_location" class="control-label">
+        <label for="lesson_file" class="control-label">
           File location
         </label>
 
-        <input type="text" id="file_location" name="file_location" placeholder="File location" class="form-control" value="<%= @lesson.file_location %>">
+        <input name="lesson_file" type="file" id="lesson_file" name="lesson_file" placeholder="Lesson File" class="form-control" value="<%= @lesson.lesson_file %>">
       </div>
 
       <!-- Label and input for course_id -->
@@ -45,6 +45,7 @@
         <input type="text" id="course_id" name="course_id" placeholder="Course" class="form-control" value="<%= @lesson.course_id %>">
       </div>
 
+      
       <button class="btn btn-success">
         Create Lesson
       </button>

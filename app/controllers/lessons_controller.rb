@@ -27,7 +27,7 @@ class LessonsController < ApplicationController
     @lesson = Lesson.new
 
     @lesson.title = params[:title]
-    @lesson.file_location = params[:file_location]
+    @lesson.lesson_file = params[:lesson_file]
     @lesson.course_id = params[:course_id]
 
     save_status = @lesson.save
@@ -49,7 +49,7 @@ class LessonsController < ApplicationController
     @lesson = Lesson.find(params[:id])
 
     @lesson.title = params[:title]
-    @lesson.file_location = params[:file_location]
+    @lesson.lesson_file = params[:lesson_file]
     @lesson.course_id = params[:course_id]
 
     save_status = @lesson.save

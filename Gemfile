@@ -7,6 +7,7 @@ end
 
 gem "devise"
 gem "starter_generators", :git => "https://github.com/raghubetina/starter_generators"
+gem 'carrierwave'
 
 gem 'bcrypt', platforms: :ruby
 

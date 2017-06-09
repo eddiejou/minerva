@@ -1,5 +1,11 @@
 <div class="page-header">
-  <h3>Lesson #<%= @lesson.id %></h3>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-5"><h3>Lesson: <%= @lesson.title %></h3></div>
+      <div class="col-md-offset-2 col-md-5"><h3><%= @lesson.course.name %></h3></div>
+    </div>
+  </div>
+
 </div>
 
 <div class="row">
@@ -8,16 +14,26 @@
       <dt>Title</dt>
       <dd><%= @lesson.title %></dd>
 
-      <dt>File location</dt>
-      <dd><%= @lesson.file_location %></dd>
+      <dt>Lesson</dt>
+      <dd><a href="<%= @lesson.lesson_file %>"><%= @lesson.title %></a></dd>
 
       <dt>Course</dt>
-      <dd><%= @lesson.course_id %></dd>
+      <dd><%= @lesson.course.name %></dd>
+
+      <dt>Assignments</dt>
+      <% @lesson.assignments.each do |assignment| %>
+      <dd><a href="<%= assignment.assignment_file %>"><%= assignment.title %></a></dd>
+      <% end %>
+
+      <dt>Standards</dt>
+      <% @lesson.standards.each do |standard| %>
+      <dd><%= standard.standard_number %></dd>
+      <% end %>
 
     </dl>
 
     <div class="btn-group btn-group-justified">
-      <a href="/lessons" class="btn btn-primary">
+      <a href="/courses/<%= @lesson.course.id %>" class="btn btn-primary">
         Back
       </a>
       <a href="/lessons/<%= @lesson.id %>/edit" class="btn btn-warning">

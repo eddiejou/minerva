@@ -18,7 +18,7 @@
       <% @lessons.each do |lesson| %>
       <tr>
         <td><%= lesson.title %></td>
-        <td><%= lesson.file_location %></td>
+        <td><%= lesson.lesson_file %></td>
         <td><%= lesson.course_id %></td>
         <td>
           <a href="/lessons/<%= lesson.id %>" class="btn btn-primary">Show</a>

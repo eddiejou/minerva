@@ -18,8 +18,8 @@
       <% @courses.each do |course| %>
       <% if course.user_id==current_user.id %>
       <tr>
-        <td><img src="<%= course.image_url %>" class="img-responsive"></td>
-        <td><a href="/my_lessons_index/"><%= course.name %></a></td>
+        <td><a href="/courses/<%= course.id %>"><img src="<%= course.image_url %>" class="img-responsive"></a></td>
+        <td><a href="/courses/<%= course.id %>"><%= course.name %></a></td>
         <td><%= course.length %></td>
         <td>
           <a href="/courses/<%= course.id %>" class="btn btn-primary">Show</a>
