@@ -1,8 +1,8 @@
 <div class="page-header">
   <div class="container">
     <div class="row">
-      <div class="col-md-5"><h3>Lesson: <%= @lesson.title %></h3></div>
-      <div class="col-md-offset-2 col-md-5"><h3><%= @lesson.course.name %></h3></div>
+      <div><h3>Course: <%= @lesson.course.name %></h3> 
+        <h5> Lesson: <%= @lesson.title %></h5></div>
     </div>
   </div>
 </div>
@@ -14,38 +14,38 @@
       <dd><%= @lesson.title %></dd>
 
       <dt>Lesson</dt>
-      <dd><a href="<%= @lesson.lesson_file %>"><%= @lesson.title %></a></dd>
-
-      <dt>Course</dt>
-      <dd><%= @lesson.course.name %></dd>
-
-      <dt>Assignments</dt>
-      <% @lesson.assignments.each do |assignment| %>
       <dd>
-        <%= assignment.title %>
-          ( <a href="/assignments/<%= assignment.id %>">details</a>
-          |
-          <a href="<%= assignment.assignment_file %>" target="_blank">assignment</a> )
-      </dd>
-      <% end %>
+        <p><a href="<%= @lesson.lesson_file %>"><%= @lesson.title %></a></p>
+        <p><embed src="<%= @lesson.lesson_file %>" width="300px" height="400px" /></p>
+        </dd>
 
-      <dt>Standards</dt>
-      <% @lesson.standards.each do |standard| %>
-      <dd><%= standard.standard_number %></dd>
-      <% end %>
+        <dt>Course</dt>
+        <dd><%= @lesson.course.name %></dd>
 
-    </dl>
+        <dt>Assignments</dt>
+        <% @lesson.assignments.each do |assignment| %>
+        <dd>
+          <%= assignment.title %>(<a href="/assignments/<%= assignment.id %>">details</a> | <a href="<%= assignment.assignment_file %>" target="_blank">assignment</a>)
+        </dd>
+        <% end %>
 
-    <div class="btn-group btn-group-justified">
-      <a href="/courses/<%= @lesson.course.id %>" class="btn btn-primary">
-        Back
-      </a>
-      <a href="/lessons/<%= @lesson.id %>/edit" class="btn btn-warning">
-        Edit
-      </a>
-      <a href="/delete_lesson/<%= @lesson.id %>" class="btn btn-danger" rel="nofollow">
-        Delete
-      </a>
+        <dt>Standards</dt>
+        <% @lesson.standards.each do |standard| %>
+        <dd><%= standard.standard_number %></dd>
+        <% end %>
+
+      </dl>
+
+      <div class="btn-group btn-group-justified">
+        <a href="/courses/<%= @lesson.course.id %>" class="btn btn-primary">
+          Back to <%= @lesson.course.name %>
+        </a>
+        <a href="/lessons/<%= @lesson.id %>/edit" class="btn btn-warning">
+          Update Lesson Information
+        </a>
+        <a href="/delete_lesson/<%= @lesson.id %>" class="btn btn-danger" rel="nofollow">
+          Delete Lesson
+        </a>
+      </div>
     </div>
   </div>
-</div>

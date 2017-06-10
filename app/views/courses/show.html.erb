@@ -1,5 +1,6 @@
 <div class="page-header">
-  <h3><img src="<%= @course.image_url %>"> <%= current_user.username %>'s <%= @course.name %> Course</h3>
+  <h3><img src="<%= @course.image_url %>" class="img-responsive"> <%= current_user.username %>'s <%= @course.name %> Course</h3>
+  <a href="/lessons/new/<%= @course.id %>" class="btn btn-lg btn-success">New Lesson</a>
 </div>
 
 <div class="row">
@@ -15,32 +16,28 @@
       <% @course.lessons.each do |lesson| %>
       <tr>
         <td>
-          <p><%= lesson.title %>
-            ( <a href="/lessons/<%= lesson.id %>">details</a>
-            |
-            <a href="<%= lesson.lesson_file %>" target="_blank">lesson</a> )
-          </p>
+          <%= lesson.title %>
+          (<a href="/lessons/<%= lesson.id %>">details</a>
+          |
+          <a href="<%= lesson.lesson_file %>" target="_blank">lesson</a>)
         </td>
-        <% lesson.assignments.each do |assignment| %>
-        <% if lesson.assignments.count==0 %>
-        <td> </td>
-        <% else %>
+
         <td>
-          <p><%= assignment.title %>
-            ( <a href="/assignments/<%= assignment.id %>">details</a>
-            |
-            <a href="<%= assignment.assignment_file %>" target="_blank">assignment</a> )
-          </p>
+          <% lesson.assignments.each do |assignment| %>
+          <%= assignment.title %>
+          (<a href="/assignments/<%= assignment.id %>">details</a>
+          |
+          <a href="<%= assignment.assignment_file %>" target="_blank">assignment</a>)
+          <% end %>
         </td>
-        <% end %>
-        <% end %>
-        <% lesson.standards.each do |standard| %>
-        <% if lesson.standards.count==0 %>
-        <td> </td>
-        <% else %>
-        <td><a href="/standards/<%= standard.id %>"><%= standard.id %></a></td>
-        <% end %>
-        <% end %>
+
+
+        <td>
+          <% lesson.standards.each do |standard| %>
+          <a href="/standards/<%= standard.id %>"><%= standard.id %></a>
+          <% end %>
+        </td>
+
         <td>
           <a href="/courses" class="btn btn-primary">
             Back
@@ -53,10 +50,8 @@
           </a>
         </td>
       </tr>
+      <% end %>
 
-
-    </div>
-    <% end %>
-  </table>
-</div>
+    </table>
+  </div>
 </div>

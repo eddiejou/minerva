@@ -9,12 +9,12 @@
 <% end %>
 
 <div class="page-header">
-  <h3>Edit Lesson: <%= @lesson.title %></h3>
+  <h3>Add Lesson</h3>
 </div>
 
 <div class="row">
   <div class="col-md-12">
-    <form enctype="multipart/form-data" action="/update_lesson/<%= @lesson.id %>" method="post">
+    <form enctype="multipart/form-data" action="/create_lesson" method="post">
       <!-- Hidden input for authenticity token to protect from forgery -->
       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
@@ -29,15 +29,11 @@
 
       <!-- Label and input for lesson_file -->
       <div class="form-group">
-        <p> Current Lesson File: <%= @lesson.lesson_file %> </p>
-
         <label for="lesson_file" class="control-label">
-          Choose Different File
+          File location
         </label>
 
         <input name="lesson_file" type="file" id="lesson_file" name="lesson_file" placeholder="Lesson File" class="form-control" value="<%= @lesson.lesson_file %>">
-
-
       </div>
 
       <!-- Label and input for course_id -->
@@ -46,42 +42,20 @@
           Course
         </label>
 
-        <%= select_tag(:course_id, options_from_collection_for_select(Course.all, :id, :name, @lesson.course.id), :class => "form-control") %>
+        <% if @lesson.course_id==nil%>
+        <%= select_tag(:course_id, options_from_collection_for_select(Course.all, :id, :name), :class => "form-control") %>
+        <% else %>
 
-      </div>
-
-      <div class="form-group">
-        <label for="assignment_file" class="control-label">
-          Change Assignment Files
-        </label>
-
-        <% @lesson.assignments.each do |assignment| %>
-        <ul>
-          <li>
-            <%= assignment.assignment_file %>
-            <input type="file" id="assignment_file" name="assignment_file" placeholder="Assignment file" class="form-control" value="<%= assignment.assignment_file %>">
-          </li>
-        </ul>
-        <% end %>
-
-      </div>
-
-      <div class="form-group">
-        <label for="standard_number" class="control-label">
-          Standards
-        </label>
-
-        <% @lesson.standards.each do |standard| %>
-        <input type="text" id="standard_number" name="standard_number" placeholder="Standard Number" class="form-control" value="<%= standard.number %>">
+        <%= select_tag(:course_id, options_from_collection_for_select(Course.all, :id, :name, @lesson.course_id), :class => "form-control") %>
         <% end %>
       </div>
 
-      <button class="btn btn-warning">
-        Update Lesson
+
+      <button class="btn btn-success">
+        Create Lesson
       </button>
       or
-      <a href="/lessons/<%= @lesson.id %>">Cancel</a>
-
+      <a href="/courses/<%= @lesson.course_id %>">Cancel</a>
     </form>
   </div>
 </div>

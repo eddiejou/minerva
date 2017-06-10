@@ -1,11 +1,11 @@
 <!-- Validation failure messages -->
 <% if @lesson.errors.any? %>
-  <% @lesson.errors.full_messages.each do |message| %>
-    <div class="alert alert-dismissable alert-danger">
-      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-      <%= message %>
-    </div>
-  <% end %>
+<% @lesson.errors.full_messages.each do |message| %>
+<div class="alert alert-dismissable alert-danger">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  <%= message %>
+</div>
+<% end %>
 <% end %>
 
 <div class="page-header">
@@ -42,15 +42,19 @@
           Course
         </label>
 
-        <input type="text" id="course_id" name="course_id" placeholder="Course" class="form-control" value="<%= @lesson.course_id %>">
+        <% if @lesson.course==nil%>
+        <%= select_tag(:course_id, options_from_collection_for_select(Course.all, :id, :name), :class => "form-control") %>
+        <% else %>
+        <%= select_tag(:course_id, options_from_collection_for_select(Course.all, :id, :name, @lesson.course.name), :class => "form-control") %>
+        <% end %>
       </div>
 
-      
+
       <button class="btn btn-success">
         Create Lesson
       </button>
       or
-      <a href="/lessons">Cancel</a>
+      <a href="/courses/<%= @lesson.course_id %>">Cancel</a>
     </form>
   </div>
 </div>

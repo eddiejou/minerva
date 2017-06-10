@@ -9,13 +9,17 @@
   <div class="col-md-12">
     <table class="table table-striped table-hover">
       <tr>
-        <th>Standard number</th>
+        <th>Course</th>
+        <th>Standard Number</th>
+        <th>Standard Description</th>
         <th>Actions</th>
       </tr>
 
       <% @standards.each do |standard| %>
       <tr>
+        <td><%= standard.program %></td>
         <td><%= standard.standard_number %></td>
+        <td><%= standard.description %></td>
         <td>
           <a href="/standards/<%= standard.id %>" class="btn btn-primary">Show</a>
           <a href="/standards/<%= standard.id %>/edit" class="btn btn-warning">Edit</a>

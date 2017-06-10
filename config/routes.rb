@@ -56,6 +56,7 @@ Rails.application.routes.draw do
 
   # Routes for the Lesson resource:
   # CREATE
+  get "/lessons/new/:id", :controller => "lessons", :action => "new_with_id"
   get "/lessons/new", :controller => "lessons", :action => "new"
   post "/create_lesson", :controller => "lessons", :action => "create"
 

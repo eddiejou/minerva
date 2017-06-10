@@ -20,11 +20,27 @@
 
       <!-- Label and input for standard_number -->
       <div class="form-group">
+        <label for="program" class="control-label">
+          Class
+        </label>
+
+        <input type="text" id="program" name="program" placeholder="Course" class="form-control" value="<%= @standard.program %>">
+      </div>
+
+      <div class="form-group">
         <label for="standard_number" class="control-label">
           Standard number
         </label>
 
         <input type="text" id="standard_number" name="standard_number" placeholder="Standard number" class="form-control" value="<%= @standard.standard_number %>">
+      </div>
+
+      <div class="form-group">
+        <label for="description" class="control-label">
+          Standard Description
+        </label>
+
+        <input type="text" id="description" name="description" placeholder="Standard Description" class="form-control" value="<%= @standard.description %>">
       </div>
 
       <button class="btn btn-success">

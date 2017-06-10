@@ -19,8 +19,13 @@ class LessonsController < ApplicationController
 
   def new
     @lesson = Lesson.new
-
     render("lessons/new.html.erb")
+  end
+
+  def new_with_id
+    @lesson = Lesson.new
+    @lesson.course_id = params[:id]
+    render("lessons/new_with_id.html.erb")
   end
 
   def create
