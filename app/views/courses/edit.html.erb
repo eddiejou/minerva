@@ -1,11 +1,11 @@
 <!-- Validation failure messages -->
 <% if @course.errors.any? %>
-  <% @course.errors.full_messages.each do |message| %>
-    <div class="alert alert-dismissable alert-danger">
-      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-      <%= message %>
-    </div>
-  <% end %>
+<% @course.errors.full_messages.each do |message| %>
+<div class="alert alert-dismissable alert-danger">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  <%= message %>
+</div>
+<% end %>
 <% end %>
 
 <div class="page-header">
@@ -27,15 +27,6 @@
         <input type="text" id="name" name="name" placeholder="Name" class="form-control" value="<%= @course.name %>">
       </div>
 
-      <!-- Label and input for length -->
-      <div class="form-group">
-        <label for="length" class="control-label">
-          Length
-        </label>
-
-        <input type="text" id="length" name="length" placeholder="Length" class="form-control" value="<%= @course.length %>">
-      </div>
-
       <!-- Label and input for image_url -->
       <div class="form-group">
         <label for="image_url" class="control-label">
@@ -45,20 +36,13 @@
         <input type="text" id="image_url" name="image_url" placeholder="Image url" class="form-control" value="<%= @course.image_url %>">
       </div>
 
-      <!-- Label and input for user_id -->
-      <div class="form-group">
-        <label for="user_id" class="control-label">
-          User
-        </label>
+      <input type="hidden" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= @course.user_id %>">
+    </div>
 
-        <input type="text" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= @course.user_id %>">
-      </div>
-
-      <button class="btn btn-warning">
-        Update Course
-      </button>
-      or
-      <a href="/courses/<%= @course.id %>">Cancel</a>
-    </form>
-  </div>
+    <button class="btn btn-warning">
+      Update Course
+    </button>
+    or
+    <a href="/my_courses_index">Cancel</a>
+  </form>
 </div>

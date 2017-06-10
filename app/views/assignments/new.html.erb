@@ -1,11 +1,11 @@
 <!-- Validation failure messages -->
 <% if @assignment.errors.any? %>
-  <% @assignment.errors.full_messages.each do |message| %>
-    <div class="alert alert-dismissable alert-danger">
-      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-      <%= message %>
-    </div>
-  <% end %>
+<% @assignment.errors.full_messages.each do |message| %>
+<div class="alert alert-dismissable alert-danger">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  <%= message %>
+</div>
+<% end %>
 <% end %>
 
 <div class="page-header">
@@ -42,8 +42,15 @@
           Lesson
         </label>
 
-        <input type="text" id="lesson_id" name="lesson_id" placeholder="Lesson" class="form-control" value="<%= @assignment.lesson_id %>">
+        <% if @assignment.lesson==nil %>
+        <%= select_tag(:lesson_id, options_from_collection_for_select(Lesson.all, :id, :title), :class => "form-control") %>
+        <% else %>
+        <%= select_tag(:lesson_id, options_from_collection_for_select(Lesson.all, :id, :title, @assignment.lesson.id), :class => "form-control") %>
+        <% end %>
+
       </div>
+
+      
 
       <button class="btn btn-success">
         Create Assignment

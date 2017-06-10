@@ -1,11 +1,11 @@
 <!-- Validation failure messages -->
 <% if @assignment.errors.any? %>
-  <% @assignment.errors.full_messages.each do |message| %>
-    <div class="alert alert-dismissable alert-danger">
-      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-      <%= message %>
-    </div>
-  <% end %>
+<% @assignment.errors.full_messages.each do |message| %>
+<div class="alert alert-dismissable alert-danger">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  <%= message %>
+</div>
+<% end %>
 <% end %>
 
 <div class="page-header">
@@ -14,7 +14,7 @@
 
 <div class="row">
   <div class="col-md-12">
-    <form action="/update_assignment/<%= @assignment.id %>" method="post">
+    <form enctype="multipart/form-data" action="/update_assignment/<%= @assignment.id %>" method="post">
       <!-- Hidden input for authenticity token to protect from forgery -->
       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
@@ -29,11 +29,13 @@
 
       <!-- Label and input for assignment_file -->
       <div class="form-group">
+        <p> Current Assignment File: <%= @assignment.assignment_file %> </p>
+
         <label for="assignment_file" class="control-label">
-          Assignment file
+          Choose Different File
         </label>
 
-        <input type="text" id="assignment_file" name="assignment_file" placeholder="Assignment file" class="form-control" value="<%= @assignment.assignment_file %>">
+        <input type="file" id="assignment_file" name="assignment_file" placeholder="Assignment file" class="form-control" value="<%= @assignment.assignment_file %>">
       </div>
 
       <div class="form-group">
@@ -45,24 +47,19 @@
 
       </div>
 
+
       <div class="form-group">
-        <label for="standard_number" class="control-label">
-          Standards
-        </label>
-
-        <% @assignment.lesson.standards.each do |standard| %>
-        <input type="text" id="standard_number" name="standard_number" placeholder="Standard Number" class="form-control" value="<%= standard.number %>">
-        <% end %>
-      </div>
-
-      <!-- Label and input for lesson_id -->
-    <!--  <div class="form-group">
         <label for="lesson_id" class="control-label">
           Lesson
         </label>
 
-        <input type="text" id="lesson_id" name="lesson_id" placeholder="Lesson" class="form-control" value="<%= @assignment.lesson_id %>">
-      </div> -->
+        <% if @assignment.lesson==nil %>
+        <%= select_tag(:lesson_id, options_from_collection_for_select(Lesson.all, :id, :title), :class => "form-control") %>
+        <% else %>
+        <%= select_tag(:lesson_id, options_from_collection_for_select(Lesson.all, :id, :title, @assignment.lesson.id), :class => "form-control") %>
+        <% end %>
+
+      </div>
 
       <button class="btn btn-warning">
         Update Assignment

@@ -23,6 +23,7 @@ class AssignmentsController < ApplicationController
     @assignment.title = params[:title]
     @assignment.assignment_file = params[:assignment_file]
     @assignment.lesson_id = params[:lesson_id]
+    @assignment.lesson.course.id = params[:course_id]
 
     save_status = @assignment.save
 

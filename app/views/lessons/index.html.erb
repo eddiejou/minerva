@@ -1,6 +1,6 @@
 <div class="page-header">
   <h1>
-    Lessons
+    All <%= current_user.username %>'s Lessons
     <a href="/lessons/new" class="btn btn-lg btn-success">New Lesson</a>
   </h1>
 </div>
@@ -9,24 +9,50 @@
   <div class="col-md-12">
     <table class="table table-striped table-hover">
       <tr>
-        <th>Title</th>
-        <th>File location</th>
+        <th>Lesson</th>
+        <th>Standard</th>
         <th>Course</th>
-        <th>Actions</th>
+        <th>Action</th>
       </tr>
 
+
       <% @lessons.each do |lesson| %>
+      <% if lesson.course.user.id==current_user.id %>
       <tr>
-        <td><%= lesson.title %></td>
-        <td><%= lesson.lesson_file %></td>
-        <td><%= lesson.course_id %></td>
         <td>
-          <a href="/lessons/<%= lesson.id %>" class="btn btn-primary">Show</a>
-          <a href="/lessons/<%= lesson.id %>/edit" class="btn btn-warning">Edit</a>
-          <a href="/delete_lesson/<%= lesson.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+          <%= lesson.title %>
+          (<a href="/lessons/<%= lesson.id %>">details</a>
+          |
+          <a href="<%= lesson.lesson_file %>" target="_blank">lesson</a>)
+        </td>
+
+        <td>
+          <% lesson.standards.each do |standard| %>
+          <a href="/standards/<%= standard.id %>"><%= standard.id %></a>
+          <% end %>
+        </td>
+
+        <td>
+          <a href="/courses/<%= lesson.course.id %>"><%= lesson.course.name %></a>
+        </td>
+
+        <td>
+
+          <a href="/lessons/<%= lesson.id %>/edit" class="btn btn-warning">
+            Edit Lesson
+          </a>
+          <a href="/delete_lesson/<%= lesson.id %>" class="btn btn-danger" rel="nofollow">
+            Delete Lesson
+          </a>
         </td>
       </tr>
+      <% else %>
       <% end %>
+      <% end %>
+
     </table>
+
+    <a href="/my_courses_index" class="btn btn-lg btn-primary">Back to My Courses</a>
+
   </div>
 </div>

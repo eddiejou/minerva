@@ -42,10 +42,10 @@
           Course
         </label>
 
-        <% if @lesson.course==nil%>
+        <% if @lesson.course_id==nil%>
         <%= select_tag(:course_id, options_from_collection_for_select(Course.all, :id, :name), :class => "form-control") %>
         <% else %>
-        <%= select_tag(:course_id, options_from_collection_for_select(Course.all, :id, :name, @lesson.course.name), :class => "form-control") %>
+        <%= select_tag(:course_id, options_from_collection_for_select(Course.all, :id, :name, @lesson.course_id), :class => "form-control") %>
         <% end %>
       </div>
 
@@ -54,7 +54,7 @@
         Create Lesson
       </button>
       or
-      <a href="/courses/<%= @lesson.course_id %>">Cancel</a>
+      <a href="/lessons">Cancel</a>
     </form>
   </div>
 </div>

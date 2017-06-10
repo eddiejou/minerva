@@ -1,6 +1,9 @@
 <div class="page-header">
-  <h3><img src="<%= @course.image_url %>" class="img-responsive"> <%= current_user.username %>'s <%= @course.name %> Course</h3>
-  <a href="/lessons/new/<%= @course.id %>" class="btn btn-lg btn-success">New Lesson</a>
+  <h3><img src="<%= @course.image_url %>" class="img-responsive"> <%= @course.user.username %>'s <%= @course.name %> Course</h3>
+  <% if @course.user.id==current_user.id %>
+  <a href="/lessons/new/<%= @course.id %>" class="btn btn-lg btn-success">Add Lesson</a>
+  <% else %>
+  <% end %>
 </div>
 
 <div class="row">
@@ -39,19 +42,27 @@
         </td>
 
         <td>
-          <a href="/courses" class="btn btn-primary">
-            Back
+          <% if current_user.id==lesson.course.user.id %>
+          <a href="/lessons/<%= lesson.id %>/edit" class="btn btn-warning">
+            Edit Lesson
           </a>
-          <a href="/courses/<%= @course.id %>/edit" class="btn btn-warning">
-            Edit
+          <a href="/delete_lesson/<%= lesson.id %>" class="btn btn-danger" rel="nofollow">
+            Delete Lesson
           </a>
-          <a href="/delete_course/<%= @course.id %>" class="btn btn-danger" rel="nofollow">
-            Delete
-          </a>
+          <% else %>
+          <% end %>
         </td>
       </tr>
       <% end %>
 
     </table>
+
+    <% if @course.user.id == current_user.id %>
+    <a href="/my_courses_index" class="btn btn-lg btn-primary">Back to My Courses</a>
+    <% else %>
+    <a href="/my_courses_index" class="btn btn-lg btn-primary">Back to My Courses</a>
+    <a href="/courses" class="btn btn-lg btn-primary">All Courses</a>
+    <% end %>
+
   </div>
 </div>

@@ -50,7 +50,6 @@ class CoursesController < ApplicationController
     @course = Course.find(params[:id])
 
     @course.name = params[:name]
-    @course.length = params[:length]
     @course.image_url = params[:image_url]
     @course.user_id = params[:user_id]
 

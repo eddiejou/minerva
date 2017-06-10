@@ -22,9 +22,9 @@
         <td><a href="/courses/<%= course.id %>"><%= course.name %></a></td>
         <td><%= course.length %></td>
         <td>
-          <a href="/courses/<%= course.id %>" class="btn btn-primary">Show</a>
-          <a href="/courses/<%= course.id %>/edit" class="btn btn-warning">Edit</a>
-          <a href="/delete_course/<%= course.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+          <a href="/courses/<%= course.id %>" class="btn btn-primary">Course Details</a>
+          <a href="/courses/<%= course.id %>/edit" class="btn btn-warning">Edit Course</a>
+          <a href="/delete_course/<%= course.id %>" class="btn btn-danger" rel="nofollow">Delete Course</a>
         </td>
       </tr>
       <% else %>

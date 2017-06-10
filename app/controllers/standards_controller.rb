@@ -21,6 +21,8 @@ class StandardsController < ApplicationController
     @standard = Standard.new
 
     @standard.standard_number = params[:standard_number]
+    @standard.program = params[:program]
+    @standard.description = params[:description]
 
     save_status = @standard.save
 
@@ -41,6 +43,8 @@ class StandardsController < ApplicationController
     @standard = Standard.find(params[:id])
 
     @standard.standard_number = params[:standard_number]
+    @standard.program = params[:program]
+    @standard.description = params[:description]
 
     save_status = @standard.save
 

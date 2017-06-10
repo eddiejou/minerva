@@ -9,24 +9,26 @@
   <div class="col-md-12">
     <table class="table table-striped table-hover">
       <tr>
-        <th>Course</th>
         <th>Standard Number</th>
         <th>Standard Description</th>
+        <th>Course</th>
         <th>Actions</th>
       </tr>
 
       <% @standards.each do |standard| %>
       <tr>
-        <td><%= standard.program %></td>
         <td><%= standard.standard_number %></td>
         <td><%= standard.description %></td>
+        <td><%= standard.program %></td>
         <td>
-          <a href="/standards/<%= standard.id %>" class="btn btn-primary">Show</a>
-          <a href="/standards/<%= standard.id %>/edit" class="btn btn-warning">Edit</a>
-          <a href="/delete_standard/<%= standard.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+          <a href="/standards/<%= standard.id %>/edit" class="btn btn-warning">Edit Standard</a>
+          <a href="/delete_standard/<%= standard.id %>" class="btn btn-danger" rel="nofollow">Delete Standard</a>
         </td>
       </tr>
       <% end %>
     </table>
+
+    <a href="/my_courses_index" class="btn btn-lg btn-primary">Back to My Courses</a>
+
   </div>
 </div>

@@ -55,6 +55,9 @@
           Change Assignment Files
         </label>
 
+        <% if @lesson.assignments.count==0 %>
+        <input type="file" id="assignment_file" name="assignment_file" placeholder="Assignment file" class="form-control">
+        <% else %>
         <% @lesson.assignments.each do |assignment| %>
         <ul>
           <li>
@@ -63,24 +66,23 @@
           </li>
         </ul>
         <% end %>
+        <% end %>
 
       </div>
 
       <div class="form-group">
         <label for="standard_number" class="control-label">
-          Standards
+          Standard
         </label>
 
-        <% @lesson.standards.each do |standard| %>
-        <input type="text" id="standard_number" name="standard_number" placeholder="Standard Number" class="form-control" value="<%= standard.number %>">
-        <% end %>
+        <%= select_tag(:standard_id, options_from_collection_for_select(Standard.all, :id, :standard_number), :class => "form-control") %>
       </div>
 
       <button class="btn btn-warning">
         Update Lesson
       </button>
       or
-      <a href="/lessons/<%= @lesson.id %>">Cancel</a>
+      <a href="/courses/<%= @lesson.course.id %>">Cancel</a>
 
     </form>
   </div>

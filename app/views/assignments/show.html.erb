@@ -14,36 +14,39 @@
       <dd><%= @assignment.title %></dd>
 
       <dt>Assignments</dt>
-      <dd><a href="<%= @assignment_file %>"><%= @assignment.title %></a></dd>
-
-      <dt>Lesson</dt>
       <dd>
-        <%= @assignment.lesson.title %>
-        ( <a href="/lessons/<%= @assignment.lesson.id %>">details</a>
-        |
-        <a href="<%= @assignment.lesson.lesson_file %>" target="_blank">lesson</a> )
-      </dd>
+        <p><a href="<%= @assignment.assignment_file %>"><%= @assignment.title %></a></p>
+        <p><embed src="<%= @assignment.assignment_file %>" width="300px" height="400px" /></p>
+        </dd>
 
-      <dt>Course</dt>
-      <dd><%= @assignment.lesson.course.name %></dd>
+        <dt>Lesson</dt>
+        <dd>
+          <%= @assignment.lesson.title %>
+          ( <a href="/lessons/<%= @assignment.lesson.id %>">details</a>
+          |
+          <a href="<%= @assignment.lesson.lesson_file %>" target="_blank">lesson</a> )
+        </dd>
 
-      <dt>Standards</dt>
-      <% @assignment.lesson.standards.each do |standard| %>
-      <dd><%= standard.standard_number %></dd>
-      <% end %>
+        <dt>Course</dt>
+        <dd><%= @assignment.lesson.course.name %></dd>
 
-    </dl>
+        <dt>Standards</dt>
+        <% @assignment.lesson.standards.each do |standard| %>
+        <dd><%= standard.standard_number %></dd>
+        <% end %>
 
-    <div class="btn-group btn-group-justified">
-      <a href="/courses/<%= @assignment.lesson.course.id %>" class="btn btn-primary">
-        Back
-      </a>
-      <a href="/assignments/<%= @assignment.id %>/edit" class="btn btn-warning">
-        Edit
-      </a>
-      <a href="/delete_assignment/<%= @assignment.id %>" class="btn btn-danger" rel="nofollow">
-        Delete
-      </a>
+      </dl>
+
+      <div class="btn-group btn-group-justified">
+        <a href="/courses/<%= @assignment.lesson.course.id %>" class="btn btn-primary">
+          Back to Course
+        </a>
+        <a href="/assignments/<%= @assignment.id %>/edit" class="btn btn-warning">
+          Edit Assignment
+        </a>
+        <a href="/delete_assignment/<%= @assignment.id %>" class="btn btn-danger" rel="nofollow">
+          Delete Assignment
+        </a>
+      </div>
     </div>
   </div>
-</div>

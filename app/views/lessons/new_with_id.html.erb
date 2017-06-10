@@ -45,7 +45,6 @@
         <% if @lesson.course_id==nil%>
         <%= select_tag(:course_id, options_from_collection_for_select(Course.all, :id, :name), :class => "form-control") %>
         <% else %>
-
         <%= select_tag(:course_id, options_from_collection_for_select(Course.all, :id, :name, @lesson.course_id), :class => "form-control") %>
         <% end %>
       </div>
