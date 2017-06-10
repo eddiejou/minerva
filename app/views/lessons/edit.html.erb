@@ -9,7 +9,7 @@
 <% end %>
 
 <div class="page-header">
-  <h3>Edit Lesson: <%= @lesson.title %></h3>
+  <h3>Edit Lesson: <%= @lesson.title %> <%= @removed_connection %><%= @proof %></h3>
 </div>
 
 <div class="row">
@@ -71,11 +71,19 @@
       </div>
 
       <div class="form-group">
-        <label for="standard_number" class="control-label">
-          Standard
+        <label for="Tstandard_id" class="control-label">
+          Add a Standard
         </label>
 
-        <%= select_tag(:standard_id, options_from_collection_for_select(Standard.all, :id, :standard_number), :class => "form-control") %>
+        <%= select_tag(:Tstandard_id, options_from_collection_for_select(Standard.all, :id, :standard_number), :class => "form-control", :include_blank => true) %>
+      </div>
+
+      <div class="form-group">
+        <label for="remove_standard_id" class="control-label">
+          Remove Standard from Lesson
+        </label>
+
+        <%= select_tag(:remove_standard_id, options_from_collection_for_select(@lesson.standards.all, :id, :standard_number), :class => "form-control", :include_blank => true) %>
       </div>
 
       <button class="btn btn-warning">

@@ -15,7 +15,7 @@
         <th>Action</th>
       </tr>
 
-      <% @assignments.each do |assignment| %>
+      <% current_user.assignments.each do |assignment| %>
       <tr>
         <td>
           <%= assignment.title %>
@@ -24,8 +24,18 @@
           <a href="<%= assignment.assignment_file %>" target="_blank">assignment</a>)
         </td>
 
+        <td>
+          <a href="/courses/<%= assignment.course.id %>"><%= assignment.course.name %></a>
+        </td>
 
-
+        <td>
+          <a href="/assignments/<%= assignment.id %>/edit" class="btn btn-warning">
+            Edit
+          </a>
+          <a href="/delete_assignment/<%= assignment.id %>" class="btn btn-danger" rel="nofollow">
+            Delete
+          </a>
+        </td>
       </tr>
 
       <% end %>

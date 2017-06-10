@@ -43,14 +43,14 @@
         </label>
 
         <% if @assignment.lesson==nil %>
-        <%= select_tag(:lesson_id, options_from_collection_for_select(Lesson.all, :id, :title), :class => "form-control") %>
+        <%= select_tag(:lesson_id, options_from_collection_for_select(current_user.lessons, :id, :title), :class => "form-control") %>
         <% else %>
         <%= select_tag(:lesson_id, options_from_collection_for_select(Lesson.all, :id, :title, @assignment.lesson.id), :class => "form-control") %>
         <% end %>
 
       </div>
 
-      
+
 
       <button class="btn btn-success">
         Create Assignment

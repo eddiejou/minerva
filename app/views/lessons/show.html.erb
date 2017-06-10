@@ -2,7 +2,8 @@
   <div class="container">
     <div class="row">
       <div><h3>Course: <%= @lesson.course.name %></h3>
-        <h5> Lesson: <%= @lesson.title %></h5></div>
+        <h5> Lesson: <%= @lesson.title %> <%= @removed_connection %><%= @proof %></h5>
+      </div>
     </div>
   </div>
 </div>
@@ -16,39 +17,41 @@
       <dt>Lesson</dt>
       <dd>
         <p><a href="<%= @lesson.lesson_file %>"><%= @lesson.title %></a></p>
-        <p><embed src="<%= @lesson.lesson_file %>" width="300px" height="400px" /></p>
-        </dd>
+        <p><embed src="<%= @lesson.lesson_file %>" width="300px" height="400px"></embed></p>
+      </dd>
 
-        <dt>Course</dt>
-        <dd><%= @lesson.course.name %></dd>
+      <dt>Course</dt>
+      <dd><%= @lesson.course.name %></dd>
 
-        <dt>Assignments</dt>
-        <% @lesson.assignments.each do |assignment| %>
-        <dd>
-          <%= assignment.title %>(<a href="/assignments/<%= assignment.id %>">details</a> | <a href="<%= assignment.assignment_file %>" target="_blank">assignment</a>)
-        </dd>
-        <% end %>
+      <dt>Assignments</dt>
+      <% @lesson.assignments.each do |assignment| %>
+      <dd>
+        <%= assignment.title %>(<a href="/assignments/<%= assignment.id %>">details</a> | <a href="<%= assignment.assignment_file %>" target="_blank">assignment</a>)
+      </dd>
+      <% end %>
 
-        <dt>Standards</dt>
-        <% @lesson.standards.each do |standard| %>
-        <dd><%= standard.standard_number %></dd>
-        <% end %>
+      <dt>Standards</dt>
+      <% @lesson.standards.each do |standard| %>
+      <dd>
+        <%= standard.standard_number %>
+      </dd>
+      <% end %>
 
-      </dl>
+    </dl>
 
-      <div class="btn-group btn-group-justified">
-        <a href="/courses/<%= @lesson.course.id %>" class="btn btn-primary">
-          Back to Course
-        </a>
-        <% if @lesson.course.user.id==current_user.id %>
-        <a href="/lessons/<%= @lesson.id %>/edit" class="btn btn-warning">
-          Update Lesson Information
-        </a>
-        <a href="/delete_lesson/<%= @lesson.id %>" class="btn btn-danger" rel="nofollow">
-          Delete Lesson
-        </a>
-        <% else %>
-        <% end %>
-      </div>
+    <div class="btn-group btn-group-justified">
+      <a href="/courses/<%= @lesson.course.id %>" class="btn btn-primary">
+        Back to Course
+      </a>
+      <% if @lesson.course.user.id==current_user.id %>
+      <a href="/lessons/<%= @lesson.id %>/edit" class="btn btn-warning">
+        Update Lesson Information
+      </a>
+      <a href="/delete_lesson/<%= @lesson.id %>" class="btn btn-danger" rel="nofollow">
+        Delete Lesson
+      </a>
+      <% else %>
+      <% end %>
     </div>
   </div>
+</div>

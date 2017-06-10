@@ -2,6 +2,8 @@ class Lesson < ApplicationRecord
 
   #Associations
   belongs_to :course
+  has_one :user, :through => :course, :source => :user
+
 
   has_many :lessons_and_standards
   has_many :assignments

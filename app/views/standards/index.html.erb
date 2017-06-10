@@ -11,7 +11,6 @@
       <tr>
         <th>Standard Number</th>
         <th>Standard Description</th>
-        <th>Course</th>
         <th>Actions</th>
       </tr>
 
@@ -19,7 +18,6 @@
       <tr>
         <td><%= standard.standard_number %></td>
         <td><%= standard.description %></td>
-        <td><%= standard.program %></td>
         <td>
           <a href="/standards/<%= standard.id %>/edit" class="btn btn-warning">Edit Standard</a>
           <a href="/delete_standard/<%= standard.id %>" class="btn btn-danger" rel="nofollow">Delete Standard</a>

@@ -19,7 +19,10 @@ class StandardsController < ApplicationController
 
   def create
     @standard = Standard.new
+#    @lessons_and_standards = Lessons_and_Standards.new
 
+#    @lessons_and_standards.lesson_id = params[:lesson_id]
+#    @lessons_and_standards.standard_id = @standard.id
     @standard.standard_number = params[:standard_number]
     @standard.program = params[:program]
     @standard.description = params[:description]
