@@ -11,20 +11,17 @@
       <dt>Standard Description</dt>
       <dd><%= @standard.description %></dd>
 
-      <dt>Lesson</dt>
-      <dd><%= @standard.program %></dd>
-
     </dl>
 
     <div class="btn-group btn-group-justified">
       <a href="/standards" class="btn btn-primary">
-        Back
+        <i class="fa fa-arrow-left" aria-hidden="true"></i> Back to Standards
       </a>
       <a href="/standards/<%= @standard.id %>/edit" class="btn btn-warning">
-        Edit
+        <i class="fa fa-wrench" aria-hidden="true"></i> Edit Standard
       </a>
       <a href="/delete_standard/<%= @standard.id %>" class="btn btn-danger" rel="nofollow">
-        Delete
+        <i class="fa fa-trash" aria-hidden="true"></i> Delete Standard
       </a>
     </div>
   </div>

@@ -202,11 +202,33 @@
 .btn-success:focus,
 .btn-success.focus {
   color: #fff;
-  background-color: #449d44;
-  border-color: #255625;
+  background-color: #3498DB;
+  border-color: #3498DB;
 }
 .btn-success:hover {
   color: #fff;
   background-color: #3498DB  ;
   border-color: #3498DB ;
+}
+
+.btn-success:active,
+.btn-success.active,
+.open > .dropdown-toggle.btn-success {
+  color: #fff;
+  background-color: #3498DB;
+  border-color: #3498DB;
+}
+
+.index-picture-size {
+  max-width: 300px;
+  max-height: 200px;
+}
+
+.show-picture-size {
+  max-width: 300px;
+  max-height: 200px;
+}
+
+.top-button {
+  align-items: right;
 }

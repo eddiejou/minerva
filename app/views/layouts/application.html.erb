@@ -10,7 +10,7 @@
   <style>
   /* Only necessary if you are using navbar-fixed-top */
   body {
-    padding-top: 150px;
+    padding-top: 70px;
   }
   </style>
 
@@ -88,8 +88,7 @@ Minerva</a>
         <% if current_user != nil %>
         <li><a href="/courses">All Courses</a></li>
         <li><a href="/users/edit"><%= current_user.username %></a></li>
-        <li><a href="/users/sign_out" data-method="delete" rel="nofollow"><i class="fa fa-fw fa-sign-out"></i><i class="fa fa-sign-out" aria-hidden="true"></i>
-Sign Out</a></li>
+        <li><a href="/users/sign_out" data-method="delete" rel="nofollow"><i class="fa fa-fw fa-sign-out"></i>Sign Out</a></li>
         <% else %>
         <li><a href="/users/sign_in"><i class="fa fa-sign-in" aria-hidden="true"></i>
 Sign In</a></li>

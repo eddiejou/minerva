@@ -1,8 +1,8 @@
 <div class="page-header">
   <div class="container">
     <div class="row">
-      <div><h3>Course: <%= @lesson.course.name %></h3>
-        <h5> Lesson: <%= @lesson.title %> <%= @removed_connection %><%= @proof %></h5>
+      <div><h3>Lesson: <%= @lesson.title %></h3>
+        <h5>Course: <%= @lesson.course.name %></h5>
       </div>
     </div>
   </div>
@@ -41,14 +41,14 @@
 
     <div class="btn-group btn-group-justified">
       <a href="/courses/<%= @lesson.course.id %>" class="btn btn-primary">
-        Back to Course
+        <i class="fa fa-arrow-left" aria-hidden="true"></i> Back to <%= @lesson.course.name %>
       </a>
       <% if @lesson.course.user.id==current_user.id %>
       <a href="/lessons/<%= @lesson.id %>/edit" class="btn btn-warning">
-        Update Lesson Information
+        <i class="fa fa-wrench" aria-hidden="true"></i> Edit Lesson
       </a>
       <a href="/delete_lesson/<%= @lesson.id %>" class="btn btn-danger" rel="nofollow">
-        Delete Lesson
+        <i class="fa fa-trash" aria-hidden="true"></i> Delete Lesson
       </a>
       <% else %>
       <% end %>

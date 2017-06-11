@@ -18,21 +18,25 @@ class StandardsController < ApplicationController
   end
 
   def create
-    @standard = Standard.new
-#    @lessons_and_standards = Lessons_and_Standards.new
-
-#    @lessons_and_standards.lesson_id = params[:lesson_id]
-#    @lessons_and_standards.standard_id = @standard.id
-    @standard.standard_number = params[:standard_number]
-    @standard.program = params[:program]
-    @standard.description = params[:description]
-
-    save_status = @standard.save
-
-    if save_status == true
-      redirect_to("/standards/#{@standard.id}", :notice => "Standard created successfully.")
+    if Standard.find_by(:standard_number => params[:standard_number])!=nil
+      redirect_to("/standards/new",alert: "Error: Must create standard using unique standard number.")
     else
-      render("standards/new.html.erb")
+      @standard = Standard.new
+      #    @lessons_and_standards = Lessons_and_Standards.new
+
+      #    @lessons_and_standards.lesson_id = params[:lesson_id]
+      #    @lessons_and_standards.standard_id = @standard.id
+      @standard.standard_number = params[:standard_number]
+      @standard.program = params[:program]
+      @standard.description = params[:description]
+
+      save_status = @standard.save
+
+      if save_status == true
+        redirect_to("/standards/#{@standard.id}", :notice => "Standard created successfully.")
+      else
+        render("standards/new.html.erb")
+      end
     end
   end
 

@@ -1,7 +1,7 @@
 <div class="page-header">
   <h1>
     All Courses
-    <a href="/courses/new" class="btn btn-lg btn-success">New Course</a>
+    <a href="/courses/new" class="btn btn-lg btn-success"><i class="fa fa-plus fa-2x" aria-hidden="true"></i></a>
   </h1>
 </div>
 
@@ -11,22 +11,23 @@
       <tr>
         <th>Image URL</th>
         <th>Course</th>
-        <th>Length</th>
         <th>Actions</th>
       </tr>
 
       <% @courses.each do |course| %>
       <tr>
-        <td><img src="<%= course.image_url %>" class="img-responsive"></td>
-        <td><%= course.name %></td>
-        <td><%= course.length %></td>
+        <td><img src="<%= course.image_url %>" class="index-picture-size"></td>
+        <td><h5><%= course.name %></h5></td>
         <td>
           <% if course.user.id==current_user.id %>
-          <a href="/courses/<%= course.id %>" class="btn btn-primary">Course Details</a>
-          <a href="/courses/<%= course.id %>/edit" class="btn btn-warning">Edit Course</a>
-          <a href="/delete_course/<%= course.id %>" class="btn btn-danger" rel="nofollow">Delete Course</a>
+          <!-- Details -->
+          <a href="/courses/<%= course.id %>" class="btn btn-primary"><i class="fa fa-info-circle fa-2x" aria-hidden="true"></i></a>
+          <!-- Edit -->
+          <a href="/courses/<%= course.id %>/edit" class="btn btn-warning"><i class="fa fa-pencil fa-2x" aria-hidden="true"></i></a>
+          <!-- Delete -->
+          <a href="/delete_course/<%= course.id %>" class="btn btn-danger" rel="nofollow"><i class="fa fa-trash fa-2x" aria-hidden="true"></i></a>
           <% else %>
-          <a href="/courses/<%= course.id %>" class="btn btn-primary">Course Details</a>
+          <a href="/courses/<%= course.id %>" class="btn btn-primary"><i class="fa fa-info-circle fa-2x" aria-hidden="true"></i></a>
           <% end %>
         </td>
       </tr>

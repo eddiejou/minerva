@@ -1,7 +1,7 @@
 <div class="page-header">
   <h1>
-    Assignments
-    <a href="/assignments/new" class="btn btn-lg btn-success">New Assignment</a>
+    All <%= current_user.username %>'s Assignments
+    <a href="/assignments/new" class="btn btn-lg btn-success"><i class="fa fa-plus fa-2x" aria-hidden="true"></i> New Assignment</a>
   </h1>
 </div>
 
@@ -30,10 +30,10 @@
 
         <td>
           <a href="/assignments/<%= assignment.id %>/edit" class="btn btn-warning">
-            Edit
+            <i class="fa fa-pencil fa-2x" aria-hidden="true"></i>
           </a>
           <a href="/delete_assignment/<%= assignment.id %>" class="btn btn-danger" rel="nofollow">
-            Delete
+            <i class="fa fa-trash fa-2x" aria-hidden="true"></i>
           </a>
         </td>
       </tr>
@@ -42,7 +42,7 @@
 
     </table>
 
-    <a href="/my_courses_index" class="btn btn-lg btn-primary">Back to My Courses</a>
+    <a href="/my_courses_index" class="btn btn-lg btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back to My Courses</a>
 
   </div>
 </div>
