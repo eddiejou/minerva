@@ -7,7 +7,10 @@ class Lesson < ApplicationRecord
 
   has_many :lessons_and_standards
   has_many :assignments
+  has_many :lesson_comments
+  has_many :lesson_likes
   has_many :standards, :through => :lessons_and_standards, :source => :standard
+  has_many :fans, :through => :lesson_likes, :source => :user
 
   mount_uploader :lesson_file, LessonFileUploader
 end

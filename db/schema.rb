@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170610022220) do
+ActiveRecord::Schema.define(version: 20170611035622) do
 
   create_table "assignments", force: :cascade do |t|
     t.string   "title"
@@ -25,6 +25,21 @@ ActiveRecord::Schema.define(version: 20170610022220) do
     t.string   "length"
     t.string   "image_url"
     t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "lesson_comments", force: :cascade do |t|
+    t.integer  "lesson_id"
+    t.text     "body"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "lesson_likes", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "lesson_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

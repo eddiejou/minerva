@@ -8,50 +8,124 @@
   </div>
 </div>
 
-<div class="row">
-  <div class="col-md-12 mb-2">
-    <dl class="dl-horizontal">
-      <dt>Title</dt>
-      <dd><%= @lesson.title %></dd>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-7">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title"><a href="<%= @lesson.lesson_file %>"><%= @lesson.title %></a></h3>
+        </div>
+        <div class="panel-body">
+          <dl class="dl-horizontal">
+            <dt>Lesson Preview</dt>
+            <dd>
+              <p><a href="<%= @lesson.lesson_file %>"><%= @lesson.title %></a></p>
+              <p><embed src="<%= @lesson.lesson_file %>" width="300px" height="400px"></embed></p>
+            </dd>
 
-      <dt>Lesson</dt>
-      <dd>
-        <p><a href="<%= @lesson.lesson_file %>"><%= @lesson.title %></a></p>
-        <p><embed src="<%= @lesson.lesson_file %>" width="300px" height="400px"></embed></p>
-      </dd>
+            <dt>Course</dt>
+            <dd><%= @lesson.course.name %></dd>
 
-      <dt>Course</dt>
-      <dd><%= @lesson.course.name %></dd>
+            <dt>Assignments</dt>
+            <% @lesson.assignments.each do |assignment| %>
+            <dd>
+              <%= assignment.title %>(<a href="/assignments/<%= assignment.id %>">details</a> | <a href="<%= assignment.assignment_file %>" target="_blank">assignment</a>)
+            </dd>
+            <% end %>
 
-      <dt>Assignments</dt>
-      <% @lesson.assignments.each do |assignment| %>
-      <dd>
-        <%= assignment.title %>(<a href="/assignments/<%= assignment.id %>">details</a> | <a href="<%= assignment.assignment_file %>" target="_blank">assignment</a>)
-      </dd>
-      <% end %>
+            <dt>Standards</dt>
+            <% @lesson.standards.each do |standard| %>
+            <dd>
+              <%= standard.standard_number %>
+            </dd>
+            <% end %>
+          </dl>
 
-      <dt>Standards</dt>
-      <% @lesson.standards.each do |standard| %>
-      <dd>
-        <%= standard.standard_number %>
-      </dd>
-      <% end %>
+          <div class="btn-group btn-group-justified">
+            <% if @lesson.course.user.id==current_user.id %>
+            <a href="/lessons/<%= @lesson.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-wrench" aria-hidden="true"></i> Edit Lesson
+            </a>
+            <a href="/delete_lesson/<%= @lesson.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash" aria-hidden="true"></i> Delete Lesson
+            </a>
+            <% end %>
+          </div>
 
-    </dl>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-offset-0 col-sm-4">
+      <div class="container">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Lesson Comments and Likes</h3>
+          </div>
+          <div class="panel-body">
 
-    <div class="btn-group btn-group-justified">
-      <a href="/courses/<%= @lesson.course.id %>" class="btn btn-primary">
-        <i class="fa fa-arrow-left" aria-hidden="true"></i> Back to <%= @lesson.course.name %>
-      </a>
-      <% if @lesson.course.user.id==current_user.id %>
-      <a href="/lessons/<%= @lesson.id %>/edit" class="btn btn-warning">
-        <i class="fa fa-wrench" aria-hidden="true"></i> Edit Lesson
-      </a>
-      <a href="/delete_lesson/<%= @lesson.id %>" class="btn btn-danger" rel="nofollow">
-        <i class="fa fa-trash" aria-hidden="true"></i> Delete Lesson
-      </a>
-      <% else %>
-      <% end %>
+            <div class="container">
+              <% if current_user.liked_comments.ids.include? @lesson.id %>
+              <a href="/delete_like/<%= @lesson.lesson_likes.find_by(:user_id => current_user.id).id %>" class="btn btn-link">
+                <i class="fa fa-heart" aria-hidden="true"></i>
+              </a>
+              <% else %>
+              <form action="/create_like" method="post">
+                <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+                <input type="hidden" id="lesson_id" name="lesson_id" value="<%= @lesson.id %>">
+                <input type="hidden" id="user_id" name="user_id" value="<%= current_user.id %>">
+                <button class="btn btn-link" ><i class="fa fa-heart-o"></i></button>
+              </form>
+              <% end %>
+
+              <% if @lesson.fans.count==0 %>
+              <small class="text-muted">be the first to like this</small>
+              <% else %>
+              <small class="text-muted"><%= @lesson.fans.map{|f| f.username}.join(", ") %> liked this </small>
+              <% end %>
+            </div>
+
+            <p></p>
+
+            <ul class="media-list">
+              <% @lesson.lesson_comments.each do |comment| %>
+              <li class="media">
+                <div class="media-body">
+                  <h6 class="media-heading"><%= comment.user.username %></h6>
+                  <h6> <%= comment.body %> </h6>
+                </div>
+              </li>
+              <% end %>
+              <li class="media">
+                <div class="media-body">
+                  <form action="/create_comment" method="post">
+                    <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+                    <input type="hidden" name="lesson_id" value="<%= @lesson.id %>">
+                    <input type="hidden" name="user_id" value="<%= current_user.id %>">
+                    <div class="form-group">
+                      <div class="input-group">
+                        <label for="body" class="sr-only">Body</label>
+                        <input type="text" id="body" name="body" class="form-control" placeholder="Add a comment..." required>
+                        <span class="input-group-btn">
+                          <button class="btn btn-default" type="submit">
+                            <i class="fa fa-commenting-o">
+                            </i>
+                          </button>
+                        </span>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+</div>
+
+<div class="btn-group">
+  <a href="/courses/<%= @lesson.course.id %>" class="btn btn-primary">
+    <i class="fa fa-arrow-left" aria-hidden="true"></i> Back to <%= @lesson.course.name %>
+  </a>
 </div>

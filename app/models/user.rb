@@ -17,9 +17,12 @@ class User < ApplicationRecord
 
   #Associations
   has_many :courses
+  has_many :lesson_likes
+  has_many :lesson_comments
   has_many :lessons, :through => :courses, :source => :lessons
   has_many :assignments, :through => :courses, :source => :assignments
   has_many :standards, :through => :lessons, :source => :standards
+  has_many :liked_comments, :through => :lesson_likes, :source => :lesson
 
 
 

@@ -1,4 +1,38 @@
 Rails.application.routes.draw do
+  # Routes for the Lesson_comment resource:
+  # CREATE
+  get "/lesson_comments/new", :controller => "lesson_comments", :action => "new"
+  post "/create_lesson_comment", :controller => "lesson_comments", :action => "create"
+
+  # READ
+  get "/lesson_comments", :controller => "lesson_comments", :action => "index"
+  get "/lesson_comments/:id", :controller => "lesson_comments", :action => "show"
+
+  # UPDATE
+  get "/lesson_comments/:id/edit", :controller => "lesson_comments", :action => "edit"
+  post "/update_lesson_comment/:id", :controller => "lesson_comments", :action => "update"
+
+  # DELETE
+  get "/delete_lesson_comment/:id", :controller => "lesson_comments", :action => "destroy"
+  #------------------------------
+
+  # Routes for the Lesson_like resource:
+  # CREATE
+  get "/lesson_likes/new", :controller => "lesson_likes", :action => "new"
+  post "/create_lesson_like", :controller => "lesson_likes", :action => "create"
+
+  # READ
+  get "/lesson_likes", :controller => "lesson_likes", :action => "index"
+  get "/lesson_likes/:id", :controller => "lesson_likes", :action => "show"
+
+  # UPDATE
+  get "/lesson_likes/:id/edit", :controller => "lesson_likes", :action => "edit"
+  post "/update_lesson_like/:id", :controller => "lesson_likes", :action => "update"
+
+  # DELETE
+  get "/delete_lesson_like/:id", :controller => "lesson_likes", :action => "destroy"
+  #------------------------------
+
   # Routes for the Assignment resource:
   # CREATE
 
@@ -109,6 +143,18 @@ Rails.application.routes.draw do
   # DELETE
   get "/delete_user/:id", :controller => "users", :action => "destroy"
   #------------------------------
+  # Routes for the lesson_comments resource:
+  # CREATE
+  post "/create_comment", :controller => "lesson_comments", :action => "create"
+
+  #------------------------------
+  # Routes for the lesson_likes resource:
+  # DELETE
+  get "/delete_like/:id", :controller => "lesson_likes", :action => "destroy"
+
+  # CREATE
+  post "/create_like", :controller => "lesson_likes", :action => "create"
+
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
