@@ -1,4 +1,38 @@
 Rails.application.routes.draw do
+  # Routes for the Assignment_comment resource:
+  # CREATE
+  get "/assignment_comments/new", :controller => "assignment_comments", :action => "new"
+  post "/create_assignment_comment", :controller => "assignment_comments", :action => "create"
+
+  # READ
+  get "/assignment_comments", :controller => "assignment_comments", :action => "index"
+  get "/assignment_comments/:id", :controller => "assignment_comments", :action => "show"
+
+  # UPDATE
+  get "/assignment_comments/:id/edit", :controller => "assignment_comments", :action => "edit"
+  post "/update_assignment_comment/:id", :controller => "assignment_comments", :action => "update"
+
+  # DELETE
+  get "/delete_assignment_comment/:id", :controller => "assignment_comments", :action => "destroy"
+  #------------------------------
+
+  # Routes for the Assignment_like resource:
+  # CREATE
+  get "/assignment_likes/new", :controller => "assignment_likes", :action => "new"
+  post "/create_assignment_like", :controller => "assignment_likes", :action => "create"
+
+  # READ
+  get "/assignment_likes", :controller => "assignment_likes", :action => "index"
+  get "/assignment_likes/:id", :controller => "assignment_likes", :action => "show"
+
+  # UPDATE
+  get "/assignment_likes/:id/edit", :controller => "assignment_likes", :action => "edit"
+  post "/update_assignment_like/:id", :controller => "assignment_likes", :action => "update"
+
+  # DELETE
+  get "/delete_assignment_like/:id", :controller => "assignment_likes", :action => "destroy"
+  #------------------------------
+
   # Routes for the Lesson_comment resource:
   # CREATE
   get "/lesson_comments/new", :controller => "lesson_comments", :action => "new"
@@ -154,6 +188,17 @@ Rails.application.routes.draw do
 
   # CREATE
   post "/create_like", :controller => "lesson_likes", :action => "create"
+  #------------------------------
+  # Routes for the assignment_comment resource:
+  # CREATE
+  post "/create__assignment_comment", :controller => "assignment_comment", :action => "create"
+  #------------------------------
+  # Routes for the assignment_likes resource:
+  # DELETE
+  get "/delete_assignment_like/:id", :controller => "assignment_likes", :action => "destroy"
+
+  # CREATE
+  post "/create_assignment_like", :controller => "assignment_likes", :action => "create"
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

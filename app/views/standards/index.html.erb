@@ -16,7 +16,7 @@
 
       <% @standards.each do |standard| %>
       <tr>
-        <td><%= standard.standard_number %></td>
+        <td><a href="/standards/<%= standard.id %>"><%= standard.standard_number %></a></td>
         <td><%= standard.description %></td>
         <td>
           <a href="/standards/<%= standard.id %>/edit" class="btn btn-warning"><i class="fa fa-pencil fa-2x" aria-hidden="true"></i>

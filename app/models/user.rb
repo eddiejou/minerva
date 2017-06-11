@@ -19,10 +19,13 @@ class User < ApplicationRecord
   has_many :courses
   has_many :lesson_likes
   has_many :lesson_comments
+  has_many :assignment_comments
+  has_many :assignment_likes
   has_many :lessons, :through => :courses, :source => :lessons
   has_many :assignments, :through => :courses, :source => :assignments
   has_many :standards, :through => :lessons, :source => :standards
   has_many :liked_comments, :through => :lesson_likes, :source => :lesson
+  has_many :liked_assignment_comments, :through => :assignment_likes, :source => :assignment
 
 
 

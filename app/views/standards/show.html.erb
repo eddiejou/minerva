@@ -11,6 +11,13 @@
       <dt>Standard Description</dt>
       <dd><%= @standard.description %></dd>
 
+      <dt>Lessons with the Same Standard</dt>
+      <% @standard.lessons.each do |lesson|%>
+      <dd><a href="/lessons/<%= lesson.id %>" %><%= lesson.title %></a><a href="/courses/#{lesson.course.id}"> (Course: <%= lesson.course.name %>)</dd>
+      <% end %>
+
+
+
     </dl>
 
     <div class="btn-group btn-group-justified">

@@ -1,0 +1,28 @@
+<div class="page-header">
+  <h3>Assignment Like #<%= @assignment_like.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12 mb-2">
+    <dl class="dl-horizontal">
+      <dt>User</dt>
+      <dd><%= @assignment_like.user_id %></dd>
+
+      <dt>Assignment</dt>
+      <dd><%= @assignment_like.assignment_id %></dd>
+
+    </dl>
+
+    <div class="btn-group btn-group-justified">
+      <a href="/assignment_likes" class="btn btn-primary">
+        Back
+      </a>
+      <a href="/assignment_likes/<%= @assignment_like.id %>/edit" class="btn btn-warning">
+        Edit
+      </a>
+      <a href="/delete_assignment_like/<%= @assignment_like.id %>" class="btn btn-danger" rel="nofollow">
+        Delete
+      </a>
+    </div>
+  </div>
+</div>
