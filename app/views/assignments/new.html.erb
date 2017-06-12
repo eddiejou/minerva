@@ -47,11 +47,8 @@
         <% else %>
         <%= select_tag(:lesson_id, options_from_collection_for_select(Lesson.all, :id, :title, @assignment.lesson.id), :class => "form-control") %>
         <% end %>
-
       </div>
-
-
-
+      
       <button class="btn btn-success">
         Create Assignment
       </button>

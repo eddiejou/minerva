@@ -9,7 +9,8 @@ class Assignment < ApplicationRecord
   has_many :assignment_likes
   has_many :assignment_fans, :through => :assignment_likes, :source => :user
 
-
+  #Validations
+  validates :title, :presence => true, :uniqueness => true
 
   mount_uploader :assignment_file, AssignmentFileUploader
 end

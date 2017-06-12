@@ -1,7 +1,7 @@
 <div class="page-header">
   <h1>
     <%= current_user.username %>'s Courses
-    <a href="/courses/new" class="btn btn-lg btn-success top-button"><i class="fa fa-plus fa-2x" aria-hidden="true"></i></a>
+    <a href="/courses/new" class="btn btn-lg btn-success top-button"><i class="fa fa-plus" aria-hidden="true"></i> Add Course</a>
   </h1>
 </div>
 
@@ -18,7 +18,14 @@
       <% if course.user_id==current_user.id %>
       <tr>
         <td><a href="/courses/<%= course.id %>"><img src="<%= course.image_url %>" class="index-picture-size"></a></td>
-        <td><a href="/courses/<%= course.id %>"><h5><%= course.name %></h5></a></td>
+        <td>
+          <a href="/courses/<%= course.id %>"><p><h5><b><%= course.name %></b></h5></p></a>
+          <ul class="ul-index">
+            <li>Lessons: <%= course.lessons.count %></li>
+            <li>Assignments: <%= course.assignments.count %></li>
+            <li>Standards: <%= course.standards.count %> </li>
+          </ul>
+        </td>
         <td>
           <!-- Details -->
           <a href="/courses/<%= course.id %>" class="btn btn-primary"><i class="fa fa-info-circle fa-2x" aria-hidden="true"></i></a>

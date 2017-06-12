@@ -12,88 +12,134 @@
   <h3>Edit Lesson: <%= @lesson.title %> <%= @removed_connection %><%= @proof %></h3>
 </div>
 
-<div class="row">
-  <div class="col-md-12">
-    <form enctype="multipart/form-data" action="/update_lesson/<%= @lesson.id %>" method="post">
-      <!-- Hidden input for authenticity token to protect from forgery -->
-      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Edit Lesson File Information</a></h3>
+        </div>
+        <form enctype="multipart/form-data" action="/update_lesson/<%= @lesson.id %>" method="post">
+          <!-- Hidden input for authenticity token to protect from forgery -->
+          <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
-      <!-- Label and input for title -->
-      <div class="form-group">
-        <label for="title" class="control-label">
-          Title
-        </label>
+          <!-- Label and input for title -->
+          <div class="form-group">
+            <div><b>Edit Lesson Information</b></div>
+            <label for="title" class="control-label">
+              Title
+            </label>
 
-        <input type="text" id="title" name="title" placeholder="Title" class="form-control" value="<%= @lesson.title %>">
+            <input type="text" id="title" name="title" placeholder="Title" class="form-control" value="<%= @lesson.title %>">
+          </div>
+
+          <!-- Label and input for lesson_file -->
+          <div class="form-group">
+            <p> Current Lesson File: <%= @lesson.lesson_file %> </p>
+
+            <label for="lesson_file" class="control-label">
+              Choose Different File
+            </label>
+
+            <input name="lesson_file" type="file" id="lesson_file" name="lesson_file" placeholder="Lesson File" class="form-control" value="<%= @lesson.lesson_file %>">
+
+
+          </div>
+
+          <!-- Label and input for course_id -->
+          <div class="form-group">
+            <label for="course_id" class="control-label">
+              Course
+            </label>
+
+
+            <%= select_tag(:course_id, options_from_collection_for_select(Course.all, :id, :name, @lesson.course.id), :class => "form-control") %>
+
+          </div>
+
+          <div><b>Edit Standard Information</b></div>
+
+          <label for="Tstandard_id" class="control-label">
+            Add a Standard
+          </label>
+
+          <%= select_tag(:Tstandard_id, options_from_collection_for_select(Standard.all, :id, :standard_number), :class => "form-control", :include_blank => true) %>
+
+          <div class="form-group">
+            <label for="remove_standard_id" class="control-label">
+              Remove Standard from Lesson
+            </label>
+
+            <%= select_tag(:remove_standard_id, options_from_collection_for_select(@lesson.standards.all, :id, :standard_number), :class => "form-control", :include_blank => true) %>
+          </div>
+
+          <button class="btn btn-warning">
+            <i class="fa fa-wrench" aria-hidden="true"></i> Update Lesson
+          </button>
+          or
+          <a href="/courses/<%= @lesson.course.id %>">Cancel</a>
+
+        </form>
       </div>
-
-      <!-- Label and input for lesson_file -->
-      <div class="form-group">
-        <p> Current Lesson File: <%= @lesson.lesson_file %> </p>
-
-        <label for="lesson_file" class="control-label">
-          Choose Different File
-        </label>
-
-        <input name="lesson_file" type="file" id="lesson_file" name="lesson_file" placeholder="Lesson File" class="form-control" value="<%= @lesson.lesson_file %>">
-
-
-      </div>
-
-      <!-- Label and input for course_id -->
-      <div class="form-group">
-        <label for="course_id" class="control-label">
-          Course
-        </label>
-
-        <%= select_tag(:course_id, options_from_collection_for_select(Course.all, :id, :name, @lesson.course.id), :class => "form-control") %>
-
-      </div>
-
-      
-
-      <div class="form-group">
-        <label for="assignment_file" class="control-label">
-          Change Assignment Files
-        </label>
-
-        <% if @lesson.assignments.count==0 %>
-        <input type="file" id="assignment_file" name="assignment_file" placeholder="Assignment file" class="form-control">
-        <% else %>
-        <% @lesson.assignments.each do |assignment| %>
-        <ul>
-          <li>
-            <%= assignment.assignment_file %>
-            <input type="file" id="assignment_file" name="assignment_file" placeholder="Assignment file" class="form-control" value="<%= assignment.assignment_file %>">
-          </li>
-        </ul>
-        <% end %>
-        <% end %>
-
-      </div>
-
-      <div class="form-group">
-        <label for="Tstandard_id" class="control-label">
-          Add a Standard
-        </label>
-
-        <%= select_tag(:Tstandard_id, options_from_collection_for_select(Standard.all, :id, :standard_number), :class => "form-control", :include_blank => true) %>
-      </div>
-
-      <div class="form-group">
-        <label for="remove_standard_id" class="control-label">
-          Remove Standard from Lesson
-        </label>
-
-        <%= select_tag(:remove_standard_id, options_from_collection_for_select(@lesson.standards.all, :id, :standard_number), :class => "form-control", :include_blank => true) %>
-      </div>
-
-      <button class="btn btn-warning">
-        <i class="fa fa-wrench" aria-hidden="true"></i> Update Lesson
-      </button>
-      or
-      <a href="/courses/<%= @lesson.course.id %>">Cancel</a>
-
-    </form>
+    </div>
   </div>
+</div>
+
+<!-- Starts assignement here -->
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Edit Lesson Homework Information</a></h3>
+        </div>
+        <div><b>Edit Assignments</b></div>
+        <!-- Show the current assignments -->
+        <ul>
+          <% @lesson.assignments.each do |assignment| %>
+          <li><%= assignment.title %>: <a href="/assignments/<%= assignment.id %>">details</a> | <a href="/assignments/<%= assignment.id %>/edit">edit</a> | <a href="/delete_assignment/<%= assignment.id %>">delete</a></li>
+          <% end %>
+        </ul>
+
+        <form enctype="multipart/form-data" action="/create_assignment" method="post">
+          <!-- Hidden input for authenticity token to protect from forgery -->
+          <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+          <!-- Label and input for title -->
+          <div class="form-group">
+            <div><b>Add an Assignment</b></div>
+            <label for="title" class="control-label">
+              Title
+            </label>
+            <input type="text" id="title" name="title" placeholder="Title" class="form-control" value="<%= @assignment.title %>">
+          </div>
+
+          <!-- Label and input for assignment_file -->
+          <div class="form-group">
+            <label for="assignment_file" class="control-label">
+              Assignment file
+            </label>
+            <input type="file" id="assignment_file" name="assignment_file" placeholder="Assignment file" class="form-control" value="<%= @assignment.assignment_file %>">
+          </div>
+
+          <input name="lesson_id" type="hidden" value="<%= @lesson.id %>">
+
+          <input name="lesson_coming_from" type="hidden" value="<%= @lesson.id %>">
+
+          <button class="btn btn-success">
+            Create Assignment
+          </button>
+          or
+          <a href="/assignments">Cancel</a>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ends here for assignment -->
+<div class="btn-group">
+  <a href="/lessons/<%= @lesson.id %>" class="btn btn-primary">
+    <i class="fa fa-arrow-left" aria-hidden="true"></i> Back to <%= @lesson.title %>
+  </a>
 </div>

@@ -28,7 +28,11 @@ class AssignmentsController < ApplicationController
     save_status = @assignment.save
 
     if save_status == true
-      redirect_to("/assignments/#{@assignment.id}", :notice => "Assignment created successfully.")
+      if params[:lesson_coming_from]!=nil
+        redirect_to("/lessons/#{params[:lesson_coming_from]}/edit", :notice => "Assignment created successfully.")
+      else
+        redirect_to("/assignments/#{@assignment.id}", :notice => "Assignment created successfully.")
+      end
     else
       render("assignments/new.html.erb")
     end
@@ -44,7 +48,9 @@ class AssignmentsController < ApplicationController
     @assignment = Assignment.find(params[:id])
 
     @assignment.title = params[:title]
-    @assignment.assignment_file = params[:assignment_file]
+    if params[:assignment_file]!=nil
+      @assignment.assignment_file = params[:assignment_file]
+    end
     @assignment.lesson_id = params[:lesson_id]
 
     save_status = @assignment.save

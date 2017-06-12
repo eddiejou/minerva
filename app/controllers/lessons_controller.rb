@@ -46,6 +46,8 @@ class LessonsController < ApplicationController
 
   def edit
     @lesson = Lesson.find(params[:id])
+    @assignment = Assignment.new
+
 
     render("lessons/edit.html.erb")
   end
@@ -54,6 +56,7 @@ class LessonsController < ApplicationController
 
       #Parameters: {"authenticity_token"=>"05NLXEIEywtAHETBUPF8rMXFpoeUzRCaNLWZ8LJUHjqAZ0NcvxasvqMap7eGvudgqdlyt9Lguu8aOA5vkW3kdA==", "title"=>"Sewing A Pillow", "course_id"=>"7", "standard_id"=>"1", "id"=>"3"}
       @lesson = Lesson.find(params[:id])
+      @assignment = Assignment.new
       if LessonsAndStandard.find_by(:standard_id => params[:Tstandard_id], :lesson_id => params[:id])!=nil
         redirect_to("/lessons/#{@lesson.id}/edit", alert: "Error: Cannot use the same standard twice for one lesson.")
       else

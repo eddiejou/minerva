@@ -5,18 +5,34 @@
 <div class="row">
   <div class="col-md-12 mb-2">
     <dl class="dl-horizontal">
-      <dt>Standard number</dt>
-      <dd><%= @standard.standard_number %></dd>
+      <div class="panel panel-default">
+        <dt>Standard number</dt>
+        <dd><%= @standard.standard_number %></dd>
+      </div>
 
-      <dt>Standard Description</dt>
-      <dd><%= @standard.description %></dd>
+      <div class="panel panel-default">
+        <dt>Standard Description</dt>
+        <dd><%= @standard.description %></dd>
+      </div>
 
-      <dt>Lessons with the Same Standard</dt>
-      <% @standard.lessons.each do |lesson|%>
-      <dd><a href="/lessons/<%= lesson.id %>" %><%= lesson.title %></a><a href="/courses/#{lesson.course.id}"> (Course: <%= lesson.course.name %>)</dd>
-      <% end %>
-
-
+      <div class="panel panel-default">
+        <dt>Lessons with the </br>Same Standard</dt>
+        <% @standard.lessons.each do |lesson|%>
+        <dd>
+          <ul class="ul-index">
+            <li>
+              Lesson: <a href="/lessons/<%= lesson.id %>" %> <%= lesson.title %></a>
+            </li>
+            <li>
+              Course: <a href="/courses/#{lesson.course.id}"> <%= lesson.course.name %></a>
+            </li>
+            <li>
+              Creator: <%= lesson.user.username %>
+            </li>
+          </ul>
+        </dd>
+        <% end %>
+      </dt>
 
     </dl>
 
@@ -31,5 +47,6 @@
         <i class="fa fa-trash" aria-hidden="true"></i> Delete Standard
       </a>
     </div>
+
   </div>
 </div>

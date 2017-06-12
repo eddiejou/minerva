@@ -35,6 +35,7 @@
         <input type="text" id="description" name="description" placeholder="Standard Description" class="form-control" value="<%= @standard.description %>">
       </div>
 
+<!--  No longer used - keeping for longer term
       <div class="form-group">
         <label for="program" class="control-label">
           Course
@@ -42,7 +43,7 @@
 
         <%= select_tag(:course_id, options_from_collection_for_select(Course.all, :id, :name), :class => "form-control") %>
       </div>
-
+-->
 
       <button class="btn btn-warning">
         Update Standard
